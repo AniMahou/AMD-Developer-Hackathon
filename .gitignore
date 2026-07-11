@@ -1,0 +1,20 @@
+# Environment variables (SECRET API KEYS!)
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE folders
+.vscode/
+.idea/
+
+# Hackathon output files (optional, to avoid huge files)
+submission.json
+benchmark_tasks.json
+golden_cache.json
+semantic_cache.json
+
+# Logs
+*.log

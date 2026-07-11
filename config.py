@@ -1,6 +1,9 @@
 import os
 
-# Fireworks AI
+from dotenv import load_dotenv
+
+load_dotenv()  # This loads the .env file
+
 FIREWORKS_API_KEY = os.environ.get("FIREWORKS_API_KEY", "YOUR_API_KEY_HERE")
 FIREWORKS_BASE_URL = "https://api.fireworks.ai/inference/v1"
 
