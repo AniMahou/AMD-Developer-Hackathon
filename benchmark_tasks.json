@@ -1,0 +1,22 @@
+[
+  {"id": 1, "prompt": "What is the capital of France?"},
+  {"id": 2, "prompt": "Calculate 25 * 4"},
+  {"id": 3, "prompt": "Write a Python function to reverse a string"},
+  {"id": 4, "prompt": "Explain quantum computing in simple terms"},
+  {"id": 5, "prompt": "What is 2 + 2?"},
+  {"id": 6, "prompt": "Who wrote Hamlet?"},
+  {"id": 7, "prompt": "Solve for x: 2x + 5 = 13"},
+  {"id": 8, "prompt": "Tell me a joke"},
+  {"id": 9, "prompt": "What is the chemical symbol for water?"},
+  {"id": 10, "prompt": "Write a SQL query to select all users"},
+  {"id": 11, "prompt": "Explain the theory of relativity"},
+  {"id": 12, "prompt": "What is the square root of 144?"},
+  {"id": 13, "prompt": "Who is the current president of the USA?"},
+  {"id": 14, "prompt": "Convert 100 degrees Fahrenheit to Celsius"},
+  {"id": 15, "prompt": "Write an algorithm for bubble sort"},
+  {"id": 16, "prompt": "What is the meaning of life?"},
+  {"id": 17, "prompt": "Calculate the area of a circle with radius 5"},
+  {"id": 18, "prompt": "What is the tallest mountain in the world?"},
+  {"id": 19, "prompt": "Write a regular expression for an email address"},
+  {"id": 20, "prompt": "How many continents are there?"}
+]

@@ -1,40 +1,31 @@
 import os
-
 from dotenv import load_dotenv
 
-load_dotenv()  # This loads the .env file
+load_dotenv()
 
 FIREWORKS_API_KEY = os.environ.get("FIREWORKS_API_KEY", "YOUR_API_KEY_HERE")
 FIREWORKS_BASE_URL = "https://api.fireworks.ai/inference/v1"
 
-# The Escalation Ladder (Cheapest to Expensive)
+# CORRECT SERVERLESS MODEL NAMES (DO NOT CHANGE)
 RUNG_MODELS = {
     "8b": "accounts/fireworks/models/llama-v3p1-8b-instruct",
-    "70b": "accounts/fireworks/models/llama-v3p1-70b-instruct",
-    "405b": "accounts/fireworks/models/llama-v3p1-405b-instruct"
+    "70b": "accounts/fireworks/models/llama-v3p1-70b-instruct"
 }
 
-# Per-rung system prompts (Claude's advice: tune differently per rung)
-# 8B needs more structure/examples; 405B can be terse.
-RUNG_PROMPTS = {
-    "8b": "You are a helpful assistant. Answer accurately. Keep it very short (1-2 sentences). If the answer requires a specific format (JSON, number, or letter), follow that format strictly.",
-    "70b": "You are an expert. Provide a concise answer in 2-3 sentences. Do not ramble.",
-    "405b": "You are a world-class expert. Solve this accurately. Keep the final answer extremely brief and to the point."
-}
-
-# Max output tokens per rung to cap Fireworks spending
+# RUTHLESS TOKEN CAPS: Force 1-word or 1-sentence answers
 RUNG_MAX_TOKENS = {
-    "8b": 80,
-    "70b": 120,
-    "405b": 200
+    "8b": 15,   # Max 3-5 tokens (e.g., "Paris", "42")
+    "70b": 40   # Max 1 short sentence (e.g., "The capital is Paris.")
 }
 
-# Local Model (small enough for AMD GPU)
-LOCAL_MODEL_NAME = "microsoft/Phi-3-mini-4k-instruct"
+# BRUTAL SYSTEM PROMPTS: No fluff, no explanations.
+RUNG_PROMPTS = {
+    "8b": "Reply with ONLY the direct answer. 1-3 words maximum. No explanations. Never say 'I think' or 'As an AI'.",
+    "70b": "Reply with ONE short sentence (max 10 words). No explanations. No bullet points. Just the direct answer."
+}
 
-# Thresholds
-CONFIDENCE_THRESHOLD = 85   # Out of 100. If local confidence >= this, submit.
-SEMANTIC_SIMILARITY_THRESHOLD = 0.92  # For fuzzy cache fallback
+# Keyword router: if prompt contains these, use 70b (hard tasks)
+KEYWORD_70B = ["code", "algorithm", "explain", "reason", "solve", "calculate complex"]
 
-# System prompt for local generation (costs 0 tokens, so length doesn't matter)
-LOCAL_SYSTEM_PROMPT = "You are a precise assistant. Answer the user's question accurately and concisely."
+# Semantic cache threshold
+SEMANTIC_SIMILARITY_THRESHOLD = 0.92
